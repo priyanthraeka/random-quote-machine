@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { FaQuoteLeft } from "react-icons/fa";
+
 const colors = [
-  "#16a085",
-  "#27ae60",
-  "#2c3e50",
-  "#f39c12",
-  "#e74c3c",
-  "#9b59b6",
+  "#16A085",
+  "#27AE60",
+  "#2C3E50",
+  "#F39C12",
+  "#E74C3C",
+  "#9B59B6",
   "#FB6964",
   "#342224",
   "#472E32",
@@ -17,9 +18,9 @@ const colors = [
 
 function App() {
   const [quote, setQuote] = useState([]);
-  const [color, setColor] = useState("");
+  const [color, setColor] = useState("#222");
 
-  const fetchQuote = async () => {
+  const fetchQuotes = async () => {
     const response = await fetch(
       "https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json"
     );
@@ -29,11 +30,11 @@ function App() {
   };
 
   const onClickHandler = () => {
-    fetchQuote();
+    fetchQuotes();
   };
 
   useEffect(() => {
-    fetchQuote();
+    fetchQuotes();
   }, []);
 
   return (
@@ -41,28 +42,24 @@ function App() {
       className="flex justify-center items-center h-screen transition-colors duration-500"
       style={{ backgroundColor: color }}
     >
-      <div className="bg-white p-10 rounded-md w-[576px] flex flex-col justify-center gap-7">
+      <div className="flex flex-col justify-center gap-7 bg-white p-10 rounded-md w-[576px]">
         <div
+          className="flex flex-col justify-center gap-7 font-lato"
           style={{ color: color }}
-          className="flex flex-col justify-center gap-7"
         >
-          <div className="text-center font-lato">
-            <p className={`text-2xl`}>
-              <span className="inline-block me-2">
-                <FaQuoteLeft size={27} color={color} />
-              </span>
-              {quote.quote}
-            </p>
-          </div>
-          <div>
-            <p className={`font-lato flex items-center justify-end text-lg`}>
-              {"— " + quote.author}
-            </p>
-          </div>
+          <p className="text-center text-2xl">
+            <span className="inline-block me-2">
+              <FaQuoteLeft size={27} color={color} />
+            </span>
+            {quote.quote}
+          </p>
+          <p className="flex justify-end items-center text-xl">
+            {"— " + quote.author}
+          </p>
         </div>
-        <div className="flex items-center justify-end">
+        <div className="flex justify-end items-center">
           <button
-            className={`p-3 hover:opacity-80 ease-in-out transition-all duration-300 text-white border rounded-md w-fit font-poppins`}
+            className="py-2 px-5 hover:opacity-90 ease-in-out transition-all duration-300 text-white border rounded-md w-fit font-poppins text-base"
             style={{ borderColor: color, backgroundColor: color }}
             onClick={onClickHandler}
           >
