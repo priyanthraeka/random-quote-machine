@@ -42,24 +42,24 @@ function App() {
       className="flex justify-center items-center h-screen transition-colors duration-500"
       style={{ backgroundColor: color }}
     >
-      <div className="flex flex-col justify-center gap-7 bg-white p-10 rounded-md w-[576px]">
+      <div className="flex flex-col justify-center gap-7 bg-white p-10 rounded-lg w-[576px] mx-10">
         <div
-          className="flex flex-col justify-center gap-7 font-lato"
+          className="flex flex-col justify-center items-end gap-7 font-lato"
           style={{ color: color }}
         >
           <p className="text-center text-2xl">
             <span className="inline-block me-2">
               <FaQuoteLeft size={27} color={color} />
             </span>
-            {quote.quote}
+            {quote.length === 0 ? "Unknown" : quote.quote}
           </p>
           <p className="flex justify-end items-center text-xl">
-            {"— " + quote.author}
+            {quote.length === 0 ? "— Unknown" : "— " + quote.author}
           </p>
         </div>
         <div className="flex justify-end items-center">
           <button
-            className="py-2 px-5 hover:opacity-90 ease-in-out transition-all duration-300 text-white border rounded-md w-fit font-poppins text-base"
+            className="py-2 px-5 hover:opacity-90 ease-in-out transition-all duration-300 text-white border rounded-md font-poppins text-base"
             style={{ borderColor: color, backgroundColor: color }}
             onClick={onClickHandler}
           >
